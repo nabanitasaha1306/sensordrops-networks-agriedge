@@ -6,7 +6,7 @@
 .register-photo .image-holder {
     display: table-cell;
     width: auto;
-    background: url(assets/diseasedplant.png);
+    background: url(assets/cropdisease.jpg);
     background-size: cover;
 }
 

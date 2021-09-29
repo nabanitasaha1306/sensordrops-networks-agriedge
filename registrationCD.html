@@ -1,80 +1,102 @@
+<?php include 'registrationCD.php'; ?> 
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
-    <link rel="stylesheet" href="regstyle.css">
-    <!-- Fontawesome CDN Link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body,
+    html {
+      height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+    .bg-img {
+      /* The image used */
+      background-image: url("assets/background_reg.jpg");
+      min-height: 700px;
+      max-width: 1350px;
+      /* Center and scale the image nicely */
+      background-position: left;
+      background-repeat: no-repeat;
+      background-size:cover;
+      position: relative;
+    }
+
+    /* Add styles to the form container */
+    .container {
+      position: absolute;
+      right: 0;
+      max-width: 500px;
+      min-height: 700px;
+      padding-left: 60px;
+      background-color: rgb(255, 255, 255);
+    }
+
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password] {
+      width: 130%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit button */
+    .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    .btn:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+
 <body>
-  <div class="container">
-    <input type="checkbox" id="flip">
-    <div class="cover">
-      <div class="front">
-        <!--<img src="images/frontImg.jpg" alt="">-->
-        
-      </div>
-      <div class="back">
-        <!--<img class="backImg" src="images/backImg.jpg" alt="">-->
-        
-      </div>
-    </div>
-    <div class="forms">
-        <div class="form-content">
-          <div class="login-form">
-            <div class="title">Login</div>
-          <form action="#">
-            <div class="input-boxes">
-              <div class="input-box">
-                <i class="fas fa-envelope"></i>
-                <input type="text" placeholder="Enter your email" required>
-              </div>
-              <div class="input-box">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Enter your password" required>
-              </div>
-              <div class="text"><a href="#">Forgot password?</a></div>
-              <div class="button input-box">
-                <input type="submit" value="Sumbit"  onClick="myFunction()">
-                <script>
-                  function myFunction() {
-                    window.location.href="cropdisease.html";  
-                  }
-                </script>
-              </div>
-              <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label></div>
-            </div>
-        </form>
-      </div>
-        <div class="signup-form">
-          <div class="title">Signup</div>
-        <form action="#">
-            <div class="input-boxes">
-              <div class="input-box">
-                <i class="fas fa-user"></i>
-                <input type="text" placeholder="Enter your name" required>
-              </div>
-              <div class="input-box">
-                <i class="fas fa-envelope"></i>
-                <input type="text" placeholder="Enter your email" required>
-              </div>
-              <div class="input-box">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Enter your password" required>
-              </div>
-              <div class="button input-box">
-                <input type="Submit" value="Submit">
-                
-              </div>
-              <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
-            </div>
-      </form>
-    </div>
-    </div>
-    </div>
+
+  <div class="bg-img">
+    <form action="registrationCD.php" class="container" method="POST">
+      <br/>
+      <br/>
+      <h1>Register</h1>
+      <br/>
+      <label for="Name"><b>Name</b></label>
+      <input type="text" placeholder="Enter Name" name="Name" required>
+
+      <label for="Contact"><b>Contact No.</b></label>
+      <input type="text" placeholder="Enter Contact No." name="Contact" required>
+
+      <label for="Email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="Email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="Password" required>
+      <br/>
+      <br/>
+      <button type="submit" class="btn">submit</button>
+      <br/>
+      <br/>
+      <div class="text sign-up-text">Already have an account? <a href="Login.html">Login now</a></div>
+    </form>
   </div>
+
 </body>
+
 </html>
