@@ -18,8 +18,5 @@
         $stmt->close();
         $conn->close();
     }
-
-
-
 ?> 
     

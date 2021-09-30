@@ -1,5 +1,14 @@
 <?php
-    session_start();
+// require 'vendor/autoload.php'; // If you're using Composer (recommended)
+// Comment out the above line if not using Composer
+ require("sendgrid-php.php");
+// If not using Composer, uncomment the above line and
+// download sendgrid-php.zip from the latest release here,
+// replacing <PATH TO> with the path to the sendgrid-php.php file,
+// which is included in the download:
+// https://github.com/sendgrid/sendgrid-php/releases
+
+session_start();
     header('location:cropdisease.html');
     $Name = $_POST['Name'];
     $Contact = $_POST['Contact'];
@@ -19,41 +28,21 @@
         $conn->close();
     }
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    require_once 'PHPMailer/Exception.php';
-    require_once 'PHPMailer/PHPMailer.php';
-    require_once 'PHPMailer/SMTP.php';
+$email = new \SendGrid\Mail\Mail();
+$email->setFrom("tinninobu@gmail.com", "Example User");
+$email->setSubject("one user registered");
+$email->addTo("$Email", "$Name");
+$email->addContent("text/plain", "registered user");
+$email->addContent(
+   "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
+);
+$sendgrid = new \SendGrid('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');
+try {
+   $response = $sendgrid->send($email);
+   print $response->statusCode() . "\n";
+   print_r($response->headers());
+   print $response->body() . "\n";
+} catch (Exception $e) {
+   echo 'Caught exception: '. $e->getMessage() ."\n";
+}
 
-    $mail = new PHPMailer(true);
-    $alert = '';
-
-    if (isset($_POST['submit'])){
-        
-        $from = $_POST['Email'];
-        $name = $_POST['name'];
-        $subject2 = "You have been registered successfully.";
-        $message = "Client: ".$name." has registered.\n\n";
-        $message2 = "We will get back to you shortly.\n\n";
-        $headers = "From: ".$from;
-        $headers2 = "From: ".$mailto;
-
-        try{
-            $mail->isSMTP();
-            $mail->host = "smtp.gmail.com";
-            $mail->SMTPAuth = true;
-            $mail->username = "tinninobu@gmail.com";
-            $mail->password = "Tinni@1306";
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->port='587';
-            $mail->setFrom('tinninobu@gmail.com');
-            $mail->addAddress('tinninobu@gmail.com');
-            $mail->isHTML(true)
-            $mail->Subject = "One user registered";
-            $mail->Body = "name: $name <br> email: $from <br> registered.";
-            $mail->send();
-            $alert = '<div class="alert-success"><span>You have been successfully registered. We will get back to you shortly.</span></div>';
-        }   catch (Exception $e){
-            $alert = '<div class="alert-error"><span>Something went wrong.</span></div>';
-        }
-    }
-?> 
